@@ -194,13 +194,13 @@ public class CocostudioJsonToJS {
 	public static String[] analysisJsonToJS(ArrayList<CocostudioJsonToJS.JsonData> al) {
 		String[] c2sString = new String[3];
 
-		String c2sStrDefinition = "";
+		String c2sStrDefinition = "\t/******工具导出的控件名******/\n\t";
 		String c2sStrInitView = "";
 		String c2sStrRelease = "";
 
 		boolean Gather = (isGather && al.size() > MAX);
 		if (Gather) {
-			c2sStrDefinition += "--控件集,本界面使用的控件超过" + MAX + "个,全部都放入widget中\n";
+			c2sStrDefinition += "//控件集,本界面使用的控件超过" + MAX + "个,全部都放入widget中\n";
 			c2sStrDefinition += "widget = {};\n\n";
 		}
 		for (int i = 0; i < al.size(); i++) {
@@ -209,27 +209,27 @@ public class CocostudioJsonToJS {
 
 			String type = data.widgetType;
 			if (Gather) {
-				c2sStrDefinition += "widget." + name + " = nil;--\n";
+				c2sStrDefinition += "widget." + name + ":null,\n\t";
 			} else {
-				c2sStrDefinition += name + " = nil;--\n";
+				c2sStrDefinition += name + ":null,\n\t";
 			}
 		}
 
-		c2sStrInitView += "local function initView()\n";
+		c2sStrInitView += "initView:function(){\n";
 		for (int i = 0; i < al.size(); i++) {
 			JsonData data = al.get(i);
 			String name = data.widgetName;
 			String type = data.widgetType;
 			if (Gather) {
-				c2sStrInitView += "	widget." + name + " = cocostudio.getUI" + type + "(view, \"" + name + "\");\n";
+				c2sStrInitView += "\t\tthis.widget." + name + " = CocoStudio.getComponent(this.view, \"" + name + "\");\n";
 			} else {
-				c2sStrInitView += "	" + name + " = cocostudio.getUI" + type + "(view, \"" + name + "\");\n";
+				c2sStrInitView += "\t\tthis." + name + " = CocoStudio.getComponent(this.view, \"" + name + "\");\n";
 			}
 		}
-		c2sStrInitView += "end";
+		c2sStrInitView += "\t},";
 
 		c2sStrRelease += "\n";
-		c2sStrRelease += "local function release()\n";
+		c2sStrRelease += "release:function(){\n";
 		if (Gather) {
 			c2sStrRelease += "	widget = {};\n";
 		} else {
@@ -237,10 +237,10 @@ public class CocostudioJsonToJS {
 				JsonData data = al.get(i);
 				String name = data.widgetName;
 				String type = data.widgetType;
-				c2sStrRelease += "	" + name + " = nil;\n";
+				c2sStrRelease += "	" + name + ":null;\n";
 			}
 		}
-		c2sStrRelease += "end";
+		c2sStrRelease += "\t}";
 		c2sString[0] = c2sStrDefinition;
 		c2sString[1] = c2sStrInitView;
 		c2sString[2] = c2sStrRelease;

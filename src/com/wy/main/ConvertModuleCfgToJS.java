@@ -133,8 +133,7 @@ public class ConvertModuleCfgToJS {
 					StringBuffer callbacks = new StringBuffer("");// 回调
 					String Definition = "";// 定义
 					String InitViewfunction = "";// 初始化
-					// String Releasefunction = "";// 释放
-					String InitLayerfunction = "";// 初始化当前界面Lua代码
+					String InitLayerfunction = "";// 初始化当前界面JS代码
 
 					String[] componets = vec_component.get(i).toString().split(";");//控件名
 					String[] events = vec_event.get(i).toString().split(";");//事件名
@@ -147,14 +146,13 @@ public class ConvertModuleCfgToJS {
 					if (jsonWidgetData.length == 3) {
 						Definition = jsonWidgetData[0];// 定义
 						InitViewfunction = jsonWidgetData[1];// 初始化
-						// Releasefunction = jsonWidgetData[2];// 释放
 					}
 
 					for (int j = 0; j < componets.length; j++) {
 						String callbackName = "callback_" + componets[j];// +"_"+events[j];
 
 						// 绑定按钮监听
-						String addTemplate = "framework.bindEventCallback(cocostudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
+						String addTemplate = "\t\tframework.bindEventCallback(CocoStudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
 						addTemplate = addTemplate.replaceAll("#component#", componets[j]);
 						addTemplate = addTemplate.replaceAll("#callback#", logicName + "." + callbackName);
 						addTemplate = addTemplate.replaceAll("#event#", events[j]);
@@ -163,11 +161,11 @@ public class ConvertModuleCfgToJS {
 
 						addCallback.append(addTemplate);
 						if (j != componets.length - 1) {
-							addCallback.append("\n" + "\t");
+							addCallback.append("\n");
 						}
 
 						// 解除按钮监听绑定
-						String removeTemplate = "framework.unbindEventCallback(cocostudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
+						String removeTemplate = "\t\tframework.unbindEventCallback(CocoStudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
 						removeTemplate = removeTemplate.replaceAll("#component#", componets[j]);
 						removeTemplate = removeTemplate.replaceAll("#callback#", logicName + "." + callbackName);
 						removeTemplate = removeTemplate.replaceAll("#event#", events[j]);
@@ -176,26 +174,26 @@ public class ConvertModuleCfgToJS {
 
 						removeCallback.append(removeTemplate);
 						if (j != componets.length - 1) {
-							removeCallback.append("\n" + "\t");
+							removeCallback.append("\n");
 						}
 
 						// 按钮监听的回调方法
-						callbacks.append("function " + callbackName + "(component)\n");
-						callbacks.append("\t" + "if component == PUSH_DOWN then" + "\n");
-						callbacks.append("\t" + "--按下" + "\n\n");
-						callbacks.append("\t" + "elseif component == RELEASE_UP then" + "\n");
-						callbacks.append("\t" + "--抬起" + "\n\n");
-						callbacks.append("\t" + "elseif component == CANCEL_UP then" + "\n");
-						callbacks.append("\t" + "--取消" + "\n\n");
-						callbacks.append("\t" + "end" + "\n");
-						callbacks.append("end" + "\n\n");
+						callbacks.append("\t"+callbackName + ":function(type){\n");
+						callbacks.append("\t\t" + "if(type == ccui.Widget.TOUCH_BEGAN){" + "\n");
+						callbacks.append("\t\t\t" + "//按下" + "\n\n");
+						callbacks.append("\t\t" + "}else if(type == ccui.Widget.TOUCH_ENDED){" + "\n");
+						callbacks.append("\t\t\t" + "//抬起" + "\n\n");
+						callbacks.append("\t\t" + "}else if(type == ccui.Widget.TOUCH_CANCELED){" + "\n");
+						callbacks.append("\t\t\t" + "//取消" + "\n");
+						callbacks.append("\t\t" + "}\n");
+						callbacks.append("\t" + "},\n\n");
 					}
 
 					String layer = sheet.getCell(1, 1).getContents();// 层级
 					String viewPath = sheet.getCell(2, 1).getContents();// 读取的json
 
 					// write controller
-					String template = FileUtils.readFileToString("template/ControllerLua.ftl");
+					String template = FileUtils.readFileToString("template/ControllerJS.ftl");
 					String content = template;
 					content = content.replaceAll("#controllerName#", controllerName);
 					content = content.replaceAll("#logicName#", logicName);
@@ -205,12 +203,13 @@ public class ConvertModuleCfgToJS {
 
 					writeJS(dist + "/" + moduleName + "/controller/" + controllerName + ".js", content);
 
+
+
 					// write logic
-					template = FileUtils.readFileToString("template/LogicLua.ftl");
+					template = FileUtils.readFileToString("template/LogicJS.ftl");
 					content = template;
 					content = content.replaceAll("#logicName#", logicName);
 					content = content.replaceAll("#viewName#", viewName);
-					// content = content.replaceAll("#viewPath#", viewPath);
 					content = content.replaceAll("#callbacks#", callbacks.toString());
 					content = content.replaceAll("#Definition#", Definition);
 					content = content.replaceAll("#InitViewfunction#", InitViewfunction);
@@ -218,25 +217,6 @@ public class ConvertModuleCfgToJS {
 					content = content.replaceAll("#InitLayerfunction#", InitLayerfunction);
 
 					writeJS(dist + "/" + moduleName + "/logic/" + logicName + ".js", content);
-
-					// write ModuleConfig
-					String controllerPath = "script/module/" + moduleName + "/controller/" + controllerName;
-
-					String str1 = "ModuleTable[\"#name#\"] = {}";
-					String str2 = "ModuleTable[\"#name#\"][\"ControllerPath\"] = \"#controllerPath#\"";
-					String str3 = "ModuleTable[\"#name#\"][\"layer\"] = \"#layer#\"";
-
-					str1 = str1.replaceAll("#name#", RealPrefix);
-
-					str2 = str2.replaceAll("#name#", RealPrefix);
-					str2 = str2.replaceAll("#controllerPath#", controllerPath);
-
-					str3 = str3.replaceAll("#name#", RealPrefix);
-					str3 = str3.replaceAll("#layer#", layer);
-
-					moduleConfigCode.append(str1 + "\n");
-					moduleConfigCode.append(str2 + "\n");
-					moduleConfigCode.append(str3 + "\n\n");
 				}
 			}
 
@@ -262,56 +242,55 @@ public class ConvertModuleCfgToJS {
 	 * @throws Exception
 	 */
 	public static String spliceInitLayerCode(String[] adaptationScheme, String prefix) throws Exception {
-		StringBuffer code = new StringBuffer("local function initLayer()\n");
-		code.append("	local gui = GUI_" + prefix.toUpperCase() + "; \n");
+		StringBuffer code = new StringBuffer("initLayer:function(){\n");
+		code.append("\t\tvar gui = GUI_" + prefix.toUpperCase() + "; \n");
 		System.out.println("adaptationScheme.length ==" + adaptationScheme.length);
-		code.append("	");
 		for (int i = 0; i < adaptationScheme.length; i++) {
 			if (adaptationScheme[i].equals("1")) {
 				if (adaptationScheme.length == 1) {
 					System.out.println("适配方案 1136 x 640");
-					code.append("if GameConfig.RealProportion > GameConfig.SCREEN_PROPORTION_SMALL then \n");
-					code.append("		--适配方案 1136x640  \n");
-					code.append("		view = cocostudio.createView(\"" + prefix + ".json\"); \n");
-					code.append("		GameConfig.setCurrentScreenResolution(view, gui, 1136, 640, kResolutionExactFit); \n");
+					code.append("\t\tif(GameConfig.RealProportion > GameConfig.SCREEN_PROPORTION_SMALL){\n");
+					code.append("\t\t\t//适配方案 1136x640  \n");
+					code.append("\t\t\tthis.view = CocoStudio.createView(\"" + prefix + ".json\"); \n");
+					code.append("\t\t\tGameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.EXACT_FIT); \n");
 					System.out.println("Pad加黑边");
-					code.append("	elseif GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL then \n");
-					code.append("		--适配方案 Pad加黑边  \n");
-					code.append("		view = cocostudio.createView(\"" + prefix + ".json\"); \n");
-					code.append("		GameConfig.setCurrentScreenResolution(view, gui, 1136, 640, kResolutionShowAll); \n");
+					code.append("\t\t}else if(GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL){\n");
+					code.append("\t\t\t//适配方案 Pad加黑边  \n");
+					code.append("\t\t\tthis.view = CocoStudio.createView(\"" + prefix + ".json\"); \n");
+					code.append("\t\t\tGameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.SHOW_ALL); \n");
 				} else {
 					System.out.println("适配方案 1136 x 640");
-					code.append("if GameConfig.RealProportion >= GameConfig.SCREEN_PROPORTION_GREAT then \n");
-					code.append("		--适配方案 1136x640  \n");
-					code.append("		view = cocostudio.createView(\"" + prefix + ".json\"); \n");
-					code.append("		GameConfig.setCurrentScreenResolution(view, gui, 1136, 640, kResolutionExactFit); \n");
+					code.append("\t\tif(GameConfig.RealProportion >= GameConfig.SCREEN_PROPORTION_GREAT){\n");
+					code.append("\t\t\t//适配方案 1136x640  \n");
+					code.append("\t\t\tthis.view = CocoStudio.createView(\"" + prefix + ".json\"); \n");
+					code.append("\t\t\tGameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.EXACT_FIT);\n");
 					if (!isAdaptivePad) {
 						System.out.println("Pad加黑边");
-						code.append("	elseif GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL then \n");
-						code.append("		--适配方案 Pad加黑边  \n");
-						code.append("		view = cocostudio.createView(\"" + prefix + ".json\"); \n");
-						code.append("		GameConfig.setCurrentScreenResolution(view, gui, 1136, 640, kResolutionShowAll); \n");
+						code.append("\t\t}else if(GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL){\n");
+						code.append("\t\t\t//适配方案 Pad加黑边  \n");
+						code.append("\t\t\tthis.view = CocoStudio.createView(\"" + prefix + ".json\"); \n");
+						code.append("\t\t\tGameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.SHOW_ALL);\n");
 					}
 				}
 			} else if (adaptationScheme[i].equals("9")) {
 				System.out.println("适配方案 960 x 640");
-				code.append("	elseif GameConfig.RealProportion < GameConfig.SCREEN_PROPORTION_GREAT and GameConfig.RealProportion > GameConfig.SCREEN_PROPORTION_SMALL then \n");
-				code.append("		--适配方案 960x640  \n");
-				code.append("		view = cocostudio.createView(\"" + prefix + "_960_640.json\"); \n");
-				code.append("		GameConfig.setCurrentScreenResolution(view, gui, 960, 640, kResolutionExactFit); \n");
+				code.append("\t\t}else if((GameConfig.RealProportion < GameConfig.SCREEN_PROPORTION_GREAT) && (GameConfig.RealProportion > GameConfig.SCREEN_PROPORTION_SMALL)){\n");
+				code.append("\t\t\t//适配方案 960x640  \n");
+				code.append("\t\t\tthis.view = CocoStudio.createView(\"" + prefix + "_960_640.json\"); \n");
+				code.append("\t\t\tGameConfig.setCurrentScreenResolution(this.view, gui, 960, 640, cc.ResolutionPolicy.EXACT_FIT); \n");
 			} else if (adaptationScheme[i].equals("2") && isAdaptivePad) {
 				System.out.println("适配方案 2048x1536");
-				code.append("	elseif GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL then \n");
-				code.append("		--适配方案 2048x1536  \n");
-				code.append("		view = cocostudio.createView(\"" + prefix + "_2048_1536.json\"); \n");
-				code.append("		GameConfig.setCurrentScreenResolution(view, gui, 2048, 1536, kResolutionExactFit); \n");
+				code.append("\t\t}else if(GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL){\n");
+				code.append("\t\t\t//适配方案 2048x1536  \n");
+				code.append("\t\t\tthis.view = CocoStudio.createView(\"" + prefix + "_2048_1536.json\"); \n");
+				code.append("\t\t\tGameConfig.setCurrentScreenResolution(this.view, gui, 2048, 1536, cc.ResolutionPolicy.EXACT_FIT);\n}");
 			} else {
 				throw new Exception("适配方案错误，" + prefix + " 没有适配为 [" + adaptationScheme[i] + "] 的方案！");
 			}
 
 		}
-		code.append("	end \n");
-		code.append("end");
+		code.append("\t\t}\n");
+		code.append("\t},");
 		return code.toString();
 	}
 
