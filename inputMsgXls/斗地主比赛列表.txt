@@ -1,0 +1,114 @@
+--[[-- 请求得到当前手机绑定的用户列表]]
+function sendMATID_MATCH_LIST_NEW()
+local nMBaseMessage = NMBaseMessage:new()
+nMBaseMessage:setMessageType(REQ + MATID_MATCH_LIST_NEW)
+
+nMBaseMessage:writeStart()
+--GameID  游戏ID
+nMBaseMessage:writeByte()
+--TimeStamp  时间戳
+nMBaseMessage:writeLong()
+--GameVersionCode  游戏版本号
+nMBaseMessage:writeInt()
+
+nMBaseMessage:writeOver()
+local messageService=Services:getMessageService()
+messageService:sendMessage(nMBaseMessage)
+nMBaseMessage:delete()
+end
+
+
+---------------------------------------------------------
+
+--[[-- 解析得到当前手机绑定的用户列表]]
+function read8002001e(nMBaseMessage)
+local dataTable = {}
+dataTable["messageType"] = ACK + MATID_MATCH_LIST_NEW 
+dataTable["messageName"] = "MATID_MATCH_LIST_NEW"
+
+--SendTimes  比赛列表发送次数
+dataTable["SendTimes"] = nMBaseMessage:readByte()
+print("比赛列表发送次数 = " .. dataTable["SendTimes"])
+--MatchCnt  比赛数量
+dataTable["MatchList"] = {}
+local MatchCnt = nMBaseMessage:readInt()
+for i = 1, MatchCnt do
+dataTable["MatchList"][i] = {}
+local length = nMBaseMessage:readShort()
+local pos = nMBaseMessage:getReadPos()
+print("MatchList---length = " .. length)
+--…MatchID  比赛ID
+dataTable["MatchList"][i].MatchID = nMBaseMessage:readInt()
+print("MatchList---比赛ID = ".. dataTable["MatchList"][i].MatchID)
+--…MatchTitle  比赛标题
+dataTable["MatchList"][i].MatchTitle = nMBaseMessage:readString()
+print("MatchList---比赛标题 = ".. dataTable["MatchList"][i].MatchTitle)
+--…MatchType  比赛类型
+dataTable["MatchList"][i].MatchType = nMBaseMessage:readByte()
+print("MatchList---比赛类型 = ".. dataTable["MatchList"][i].MatchType)
+--…TitlePictureUrl  标题图片路径
+dataTable["MatchList"][i].TitlePictureUrl = nMBaseMessage:readString()
+print("MatchList---标题图片路径 = ".. dataTable["MatchList"][i].TitlePictureUrl)
+--…TagPicUrl  推荐类型url
+dataTable["MatchList"][i].TagPicUrl = nMBaseMessage:readString()
+print("MatchList---推荐类型url = ".. dataTable["MatchList"][i].TagPicUrl)
+--…PrizeImgUrl  奖品图片（列表）
+dataTable["MatchList"][i].PrizeImgUrl = nMBaseMessage:readString()
+print("MatchList---奖品图片（列表） = ".. dataTable["MatchList"][i].PrizeImgUrl)
+--…MatchLevel  级别
+dataTable["MatchList"][i].MatchLevel = nMBaseMessage:readByte()
+print("MatchList---级别 = ".. dataTable["MatchList"][i].MatchLevel)
+--…MatchStatus  赛制状态
+dataTable["MatchList"][i].MatchStatus = nMBaseMessage:readByte()
+print("MatchList---赛制状态 = ".. dataTable["MatchList"][i].MatchStatus)
+--…DeleteFlag  删除标志
+dataTable["MatchList"][i].DeleteFlag = nMBaseMessage:readByte()
+print("MatchList---删除标志 = ".. dataTable["MatchList"][i].DeleteFlag)
+--…RegUserCnt  已报名人数
+dataTable["MatchList"][i].RegUserCnt = nMBaseMessage:readShort()
+print("MatchList---已报名人数 = ".. dataTable["MatchList"][i].RegUserCnt)
+--…MinReg  最小报名人数
+dataTable["MatchList"][i].MinReg = nMBaseMessage:readShort()
+print("MatchList---最小报名人数 = ".. dataTable["MatchList"][i].MinReg)
+--…MaxReg  最大报名人数
+dataTable["MatchList"][i].MaxReg = nMBaseMessage:readShort()
+print("MatchList---最大报名人数 = ".. dataTable["MatchList"][i].MaxReg)
+--…StartTime  开赛时间
+dataTable["MatchList"][i].StartTime = nMBaseMessage:readString()
+print("MatchList---开赛时间 = ".. dataTable["MatchList"][i].StartTime)
+--…Condition  报名条件
+dataTable["MatchList"][i].Condition = nMBaseMessage:readString()
+print("MatchList---报名条件 = ".. dataTable["MatchList"][i].Condition)
+--…MaxLevelPrize  最高奖品描述
+dataTable["MatchList"][i].MaxLevelPrize = nMBaseMessage:readString()
+print("MatchList---最高奖品描述 = ".. dataTable["MatchList"][i].MaxLevelPrize)
+--…MaxLevelPrizePriceUrl  最高奖品图片url
+dataTable["MatchList"][i].MaxLevelPrizePriceUrl = nMBaseMessage:readString()
+print("MatchList---最高奖品图片url = ".. dataTable["MatchList"][i].MaxLevelPrizePriceUrl)
+--...Orderby  排序
+dataTable["...Orderby"] = nMBaseMessage:readByte()
+print("排序 = " .. dataTable["...Orderby"])
+--...RegType  1 报名 2 激战
+dataTable["...RegType"] = nMBaseMessage:readByte()
+print("1 报名 2 激战 = " .. dataTable["...RegType"])
+--...Honor  赠送荣誉值
+dataTable["...Honor"] = nMBaseMessage:readShort()
+print("赠送荣誉值 = " .. dataTable["...Honor"])
+--...RegCoin  报名金币数
+dataTable["...RegCoin"] = nMBaseMessage:readShort()
+print("报名金币数 = " .. dataTable["...RegCoin"])
+--...RegRongyuzhi  报名荣誉值数
+dataTable["...RegRongyuzhi"] = nMBaseMessage:readShort()
+print("报名荣誉值数 = " .. dataTable["...RegRongyuzhi"])
+--...NeedTicket  是否用门票报名
+dataTable["...NeedTicket"] = nMBaseMessage:readByte()
+print("是否用门票报名 = " .. dataTable["...NeedTicket"])
+--...MinVipLevel  需要的VIP最小等级
+dataTable["...MinVipLevel"] = nMBaseMessage:readInt()
+print("需要的VIP最小等级 = " .. dataTable["...MinVipLevel"])
+--TimeStamp  时间戳
+dataTable["TimeStamp"] = nMBaseMessage:readLong()
+print("时间戳 = " .. dataTable["TimeStamp"])
+return dataTable
+end
+

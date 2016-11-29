@@ -1,0 +1,43 @@
+--[[-- 请求服务器列表]]
+function sendDBID_SERVER_LIST()
+local nMBaseMessage = NMBaseMessage:new()
+nMBaseMessage:setMessageType(REQ + DBID_SERVER_LIST)
+
+nMBaseMessage:writeStart()
+
+nMBaseMessage:writeOver()
+local messageService=Services:getMessageService()
+messageService:sendMessage(nMBaseMessage)
+nMBaseMessage:delete()
+end
+
+
+---------------------------------------------------------
+
+--[[-- 解析服务器列表]]
+function read80060032(nMBaseMessage)
+local dataTable = {}
+dataTable["messageType"] = ACK + DBID_SERVER_LIST 
+dataTable["messageName"] = "DBID_SERVER_LIST"
+
+--EnableServerCnt  可用的服务器数量
+dataTable["EnableServerTable"] = {}
+local EnableServerCnt = nMBaseMessage:readShort()
+for i = 1, EnableServerCnt do
+dataTable["EnableServerTable"][i] = {}
+--…EnableServerIP  可用的服务器地址
+dataTable["EnableServerTable"][i].EnableServerIP = nMBaseMessage:readString()
+print("EnableServerTable---可用的服务器地址 = ".. dataTable["EnableServerTable"][i].EnableServerIP)
+end
+--DisableServerCnt  停用的服务器数量
+dataTable["DisableServerTable"] = {}
+local DisableServerCnt = nMBaseMessage:readShort()
+for i = 1, DisableServerCnt do
+dataTable["DisableServerTable"][i] = {}
+--…DisableServerIP  停用的服务器地址
+dataTable["DisableServerTable"][i].DisableServerIP = nMBaseMessage:readString()
+print("DisableServerTable---停用的服务器地址 = ".. dataTable["DisableServerTable"][i].DisableServerIP)
+end
+return dataTable
+end
+
