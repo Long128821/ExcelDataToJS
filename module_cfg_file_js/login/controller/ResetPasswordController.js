@@ -10,7 +10,7 @@ var ResetPasswordController = BaseController.extend({
 
     createView:function(){
         ResetPasswordLogic.createView();
-        framework.setOnKeypadEventListener(ResetPasswordLogic.view, ResetPasswordLogic.onKeypad);
+        //Frameworks.setOnKeypadEventListener(ResetPasswordLogic.view, ResetPasswordLogic.onKeypad);
     },
     
     requestMsg:function(){
@@ -26,15 +26,15 @@ var ResetPasswordController = BaseController.extend({
 	},
     
     addCallback:function(){
-		framework.bindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_more"), ResetPasswordLogic.callback_btn_more, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
-		framework.bindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_commit"), ResetPasswordLogic.callback_btn_commit, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
-		framework.bindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_cancel"), ResetPasswordLogic.callback_btn_cancel, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
+		Frameworks.bindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_cancel"), ResetPasswordLogic.callback_btn_cancel, BUTTON_CLICK, BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE);
+		Frameworks.bindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_commit"), ResetPasswordLogic.callback_btn_commit, BUTTON_CLICK, BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE);
+		Frameworks.bindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_more"), ResetPasswordLogic.callback_btn_more, BUTTON_CLICK, BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE);
     },
     
     removeCallback:function(){
-		framework.unbindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_more"), ResetPasswordLogic.callback_btn_more, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
-		framework.unbindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_commit"), ResetPasswordLogic.callback_btn_commit, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
-		framework.unbindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_cancel"), ResetPasswordLogic.callback_btn_cancel, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
+		Frameworks.unbindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_cancel"), ResetPasswordLogic.callback_btn_cancel, BUTTON_CLICK, BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE);
+		Frameworks.unbindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_commit"), ResetPasswordLogic.callback_btn_commit, BUTTON_CLICK, BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE);
+		Frameworks.unbindEventCallback(CocoStudio.getComponent(ResetPasswordLogic.view,"btn_more"), ResetPasswordLogic.callback_btn_more, BUTTON_CLICK, BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE);
     },
     
     setModuleLayer:function(moduleLayer){
@@ -46,31 +46,32 @@ var ResetPasswordController = BaseController.extend({
 	},
     
     sleepModule:function(){
-		framework.releaseOnKeypadEventListener(ResetPasswordLogic.view);
+		//Frameworks.releaseOnKeypadEventListener(ResetPasswordLogic.view);
 		ResetPasswordLogic.view.setTouchEnabled(false);
-		framework.emit(signal.common.Signal_SleepModule_Done);
+		Frameworks.emit(signal.common.Signal_SleepModule_Done);
     },
 
     wakeModule:function(){
-    	framework.setOnKeypadEventListener(ResetPasswordLogic.view, ResetPasswordLogic.onKeypad);
+    	//Frameworks.setOnKeypadEventListener(ResetPasswordLogic.view, ResetPasswordLogic.onKeypad);
         ResetPasswordLogic.view.setTouchEnabled(true);
+        this.addCallback();
     },
 
     destroyModule:function(){
-        framework.releaseOnKeypadEventListener(ResetPasswordLogic.view);
+        //Frameworks.releaseOnKeypadEventListener(ResetPasswordLogic.view);
 		this.destroy();
 
 		if(destroyType == DESTORY_TYPE_EFFECT){
 			//不销毁数据
 		}else if(destroyType == DESTORY_TYPE_CLEAN){
 			//销毁数据
-			framework.moduleCleanUp(ResetPasswordLogic);
+			Frameworks.moduleCleanUp(ResetPasswordLogic);
 			ResetPasswordLogic.releaseData();
 		}
 	
-		ResetPasswordLogic.view.removeFromParentAndCleanup(true);
+		ResetPasswordLogic.view.removeFromParent(true);
 		this.reset();
 	
-		framework.emit(signal.common.Signal_DestroyModule_Done);
+		Frameworks.emit(signal.common.Signal_DestroyModule_Done);
     }
 });

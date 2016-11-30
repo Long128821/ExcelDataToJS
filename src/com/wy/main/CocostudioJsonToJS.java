@@ -38,7 +38,7 @@ public class CocostudioJsonToJS {
 	public static final String NONE_EFFECT = "BUTTON_SOUND_NONE + BUTTON_ANIMATION_NONE";
 	public static final String NameSeparator = "#";//名字分隔符
 	public static final int FILE_NAME_LENGTH = 4;// 需要适配的json截取存入的数组的长度
-	public static final String[] LayerName = { "base_layer", "second_layer", "third_layer", "fourth_layer" };//层级类型
+	public static final String[] LayerName = { "Base_Layer", "Second_Layer", "Third_Layer", "Fourth_Layer" };//层级类型
 	public static final String[] ScreeningWidget = { "ScrollView", "TextField", "CheckBox", "ListView", "PageView" };//控件类型
 
 	public static final String[] SOUND_PREFIX = { "BUTTON_SOUND_NONE", "BUTTON_SOUND_CLICK", "BUTTON_SOUND_BACK" };// 声音
@@ -192,11 +192,12 @@ public class CocostudioJsonToJS {
 	 * @return
 	 */
 	public static String[] analysisJsonToJS(ArrayList<CocostudioJsonToJS.JsonData> al) {
-		String[] c2sString = new String[3];
+		String[] c2sString = new String[4];
 
 		String c2sStrDefinition = "\t/******工具导出的控件名******/\n\t";
 		String c2sStrInitView = "";
 		String c2sStrRelease = "";
+		String c2sStrPath = "";
 
 		boolean Gather = (isGather && al.size() > MAX);
 		if (Gather) {
@@ -207,9 +208,8 @@ public class CocostudioJsonToJS {
 			JsonData data = al.get(i);
 			String name = data.widgetName;
 
-			String type = data.widgetType;
 			if (Gather) {
-				c2sStrDefinition += "widget." + name + ":null,\n\t";
+				c2sStrDefinition += "widget." + name + ":null,\\"+ data.widgetType+ "\n\t";
 			} else {
 				c2sStrDefinition += name + ":null,\n\t";
 			}
@@ -221,9 +221,9 @@ public class CocostudioJsonToJS {
 			String name = data.widgetName;
 			String type = data.widgetType;
 			if (Gather) {
-				c2sStrInitView += "\t\tthis.widget." + name + " = CocoStudio.getComponent(this.view, \"" + name + "\");\n";
+				c2sStrInitView += "\t\tthis.widget." + name + " = CocoStudio.getComponent(this.view, \"" + name + "\");//"+ type +"\n";
 			} else {
-				c2sStrInitView += "\t\tthis." + name + " = CocoStudio.getComponent(this.view, \"" + name + "\");\n";
+				c2sStrInitView += "\t\tthis." + name + " = CocoStudio.getComponent(this.view, \"" + name + "\");//"+ type +"\n";
 			}
 		}
 		c2sStrInitView += "\t},";
@@ -241,9 +241,23 @@ public class CocostudioJsonToJS {
 			}
 		}
 		c2sStrRelease += "\t}";
+		
+		for (int i = 0; i < al.size(); i++) {
+			JsonData data = al.get(i);
+			if(data.widgetPicPath!= null&&(data.widgetPicPath.indexOf("Cocos Studio")== -1)){
+				String widgetPicPath ="res/"+data.widgetPicPath;
+				c2sStrPath+= "\""+ widgetPicPath+ "\",\n\t\t";
+			}
+		}
+//		if(c2sStrPath!= null){
+//			//去除后面的(,\n);
+//			c2sStrPath= c2sStrPath.substring(0, c2sStrPath.length()- 2);
+//		}
+
 		c2sString[0] = c2sStrDefinition;
 		c2sString[1] = c2sStrInitView;
 		c2sString[2] = c2sStrRelease;
+		c2sString[3] = c2sStrPath;
 		return c2sString;
 	}
 
@@ -261,6 +275,46 @@ public class CocostudioJsonToJS {
 			data.widgetType = options.getString("classname");//类名
 			data.widgetName = options.getString("name");//控件名
 			data.isOnClick = options.getBoolean("touchAble");//可否监听
+			//获取控件图片的路径
+			if(options.has("fileNameData")){
+				JSONObject fileNameData= options.getJSONObject("fileNameData");
+				
+				if(fileNameData.getString("path")!= null){
+					System.out.println(fileNameData.getString("path"));
+					data.widgetPicPath= fileNameData.getString("path");
+				}
+			}else if(options.has("pressedData")){
+				JSONObject pressedData= options.getJSONObject("pressedData");
+				
+				if(pressedData.getString("path")!= null){
+					System.out.println(pressedData.getString("path"));
+					data.widgetPicPath= pressedData.getString("path");
+				}
+			}else if(options.has("normalData")){
+				JSONObject normalData= options.getJSONObject("normalData");
+				
+				if(normalData.getString("path")!= null){
+					System.out.println(normalData.getString("path"));
+					data.widgetPicPath= normalData.getString("path");
+				}
+			}else if(options.has("disabledData")){
+				JSONObject disabledData= options.getJSONObject("disabledData");
+				
+				if(disabledData.getString("path")!= null){
+					System.out.println(disabledData.getString("path"));
+					data.widgetPicPath= disabledData.getString("path");
+				}
+			}else if(options.has("backGroundImageData")){
+				if(!options.get("backGroundImageData").equals(null)){
+					JSONObject backGroundImageData= options.getJSONObject("backGroundImageData");
+					
+					System.out.println("backGroundImageData");
+					if(backGroundImageData.getString("path")!= null){
+						System.out.println(backGroundImageData.getString("path"));
+						data.widgetPicPath= backGroundImageData.getString("path");
+					}
+				}
+			}
 			
 			//可否交互
 			if (data.isOnClick) {
@@ -302,6 +356,7 @@ public class CocostudioJsonToJS {
 		}
 		return al;
 	}
+	
 
 	/**
 	 * 解析json中children字段转化为ArrayList
@@ -735,5 +790,6 @@ public class CocostudioJsonToJS {
 		public String widgetType = null;// 控件类型
 		public boolean isOnClick = false;// 控件是否开启交互
 		public String widgetEffect = null;// 控件交互效果
+		public String widgetPicPath = null;//控件图片
 	}
 }

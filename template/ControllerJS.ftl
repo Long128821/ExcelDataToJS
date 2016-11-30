@@ -10,7 +10,7 @@ var #controllerName# = BaseController.extend({
 
     createView:function(){
         #logicName#.createView();
-        framework.setOnKeypadEventListener(#logicName#.view, #logicName#.onKeypad);
+        //Frameworks.setOnKeypadEventListener(#logicName#.view, #logicName#.onKeypad);
     },
     
     requestMsg:function(){
@@ -42,31 +42,32 @@ var #controllerName# = BaseController.extend({
 	},
     
     sleepModule:function(){
-		framework.releaseOnKeypadEventListener(#logicName#.view);
+		//Frameworks.releaseOnKeypadEventListener(#logicName#.view);
 		#logicName#.view.setTouchEnabled(false);
-		framework.emit(signal.common.Signal_SleepModule_Done);
+		Frameworks.emit(signal.common.Signal_SleepModule_Done);
     },
 
     wakeModule:function(){
-    	framework.setOnKeypadEventListener(#logicName#.view, #logicName#.onKeypad);
+    	//Frameworks.setOnKeypadEventListener(#logicName#.view, #logicName#.onKeypad);
         #logicName#.view.setTouchEnabled(true);
+        this.addCallback();
     },
 
     destroyModule:function(){
-        framework.releaseOnKeypadEventListener(#logicName#.view);
+        //Frameworks.releaseOnKeypadEventListener(#logicName#.view);
 		this.destroy();
 
 		if(destroyType == DESTORY_TYPE_EFFECT){
 			//不销毁数据
 		}else if(destroyType == DESTORY_TYPE_CLEAN){
 			//销毁数据
-			framework.moduleCleanUp(#logicName#);
+			Frameworks.moduleCleanUp(#logicName#);
 			#logicName#.releaseData();
 		}
 	
-		#logicName#.view.removeFromParentAndCleanup(true);
+		#logicName#.view.removeFromParent(true);
 		this.reset();
 	
-		framework.emit(signal.common.Signal_DestroyModule_Done);
+		Frameworks.emit(signal.common.Signal_DestroyModule_Done);
     }
 });

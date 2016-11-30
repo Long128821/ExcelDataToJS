@@ -10,7 +10,7 @@ var DeleteUserController = BaseController.extend({
 
     createView:function(){
         DeleteUserLogic.createView();
-        framework.setOnKeypadEventListener(DeleteUserLogic.view, DeleteUserLogic.onKeypad);
+        //Frameworks.setOnKeypadEventListener(DeleteUserLogic.view, DeleteUserLogic.onKeypad);
     },
     
     requestMsg:function(){
@@ -26,13 +26,13 @@ var DeleteUserController = BaseController.extend({
 	},
     
     addCallback:function(){
-		framework.bindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_close"), DeleteUserLogic.callback_btn_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
-		framework.bindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_go"), DeleteUserLogic.callback_btn_go, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
+		Frameworks.bindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_close"), DeleteUserLogic.callback_btn_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
+		Frameworks.bindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_go"), DeleteUserLogic.callback_btn_go, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
     },
     
     removeCallback:function(){
-		framework.unbindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_close"), DeleteUserLogic.callback_btn_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
-		framework.unbindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_go"), DeleteUserLogic.callback_btn_go, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
+		Frameworks.unbindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_close"), DeleteUserLogic.callback_btn_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
+		Frameworks.unbindEventCallback(CocoStudio.getComponent(DeleteUserLogic.view,"btn_go"), DeleteUserLogic.callback_btn_go, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
     },
     
     setModuleLayer:function(moduleLayer){
@@ -44,31 +44,32 @@ var DeleteUserController = BaseController.extend({
 	},
     
     sleepModule:function(){
-		framework.releaseOnKeypadEventListener(DeleteUserLogic.view);
+		//Frameworks.releaseOnKeypadEventListener(DeleteUserLogic.view);
 		DeleteUserLogic.view.setTouchEnabled(false);
-		framework.emit(signal.common.Signal_SleepModule_Done);
+		Frameworks.emit(signal.common.Signal_SleepModule_Done);
     },
 
     wakeModule:function(){
-    	framework.setOnKeypadEventListener(DeleteUserLogic.view, DeleteUserLogic.onKeypad);
+    	//Frameworks.setOnKeypadEventListener(DeleteUserLogic.view, DeleteUserLogic.onKeypad);
         DeleteUserLogic.view.setTouchEnabled(true);
+        this.addCallback();
     },
 
     destroyModule:function(){
-        framework.releaseOnKeypadEventListener(DeleteUserLogic.view);
+        //Frameworks.releaseOnKeypadEventListener(DeleteUserLogic.view);
 		this.destroy();
 
 		if(destroyType == DESTORY_TYPE_EFFECT){
 			//不销毁数据
 		}else if(destroyType == DESTORY_TYPE_CLEAN){
 			//销毁数据
-			framework.moduleCleanUp(DeleteUserLogic);
+			Frameworks.moduleCleanUp(DeleteUserLogic);
 			DeleteUserLogic.releaseData();
 		}
 	
-		DeleteUserLogic.view.removeFromParentAndCleanup(true);
+		DeleteUserLogic.view.removeFromParent(true);
 		this.reset();
 	
-		framework.emit(signal.common.Signal_DestroyModule_Done);
+		Frameworks.emit(signal.common.Signal_DestroyModule_Done);
     }
 });

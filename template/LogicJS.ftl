@@ -1,15 +1,11 @@
-var #logicName#= cc.Layer.extend({
+var #logicName#= {
     view:null,//视图
     
 #Definition#
-    ctor:function(){
-        this._super();
-    },
-
     createView:function(){
     	this.initLayer();
         
-        this.view.setTag(getDiffTag());
+        //this.view.setTag(getDiffTag());
         
         this.initView();
     },
@@ -44,7 +40,4 @@ var #logicName#= cc.Layer.extend({
     requestMsg:function(){
     
     }
-});
-
-
-#logicName#= new #logicName#();
+};

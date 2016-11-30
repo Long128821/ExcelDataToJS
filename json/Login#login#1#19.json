@@ -9,7 +9,10 @@
   "dataScale": 1,
   "designHeight": 640,
   "designWidth": 1136,
-  "textures": [],
+  "textures": [
+    "登陆界面0.plist",
+    "登陆界面1.plist"
+  ],
   "texturesPng": [],
   "version": "1.6.0.0",
   "widgetTree": {
