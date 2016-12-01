@@ -1,7 +1,10 @@
 var ModuleTable = {};//UI界面列表
 
 ModuleTable["DeleteUser"] = {};
-ModuleTable["DeleteUser"]["jsLists"] = ["src/module/login/logic/DeleteUserLogic.js","src/module/login/controller/DeleteUserController.js"];
+ModuleTable["DeleteUser"]["jsLists"] = [
+	"src/module/login/profile/ProfileDeleteUser.js",
+	"src/module/login/logic/DeleteUserLogic.js",
+	"src/module/login/controller/DeleteUserController.js"];
 ModuleTable["DeleteUser"]["Layer"] = g_LayerTag.Third_Layer;
 ModuleTable["DeleteUser"]["resLists"] = [
 		"res/bg_toumingditu1.png",
@@ -11,7 +14,10 @@ ModuleTable["DeleteUser"]["resLists"] = [
 		"res/DeleteUser.json"];
 
 ModuleTable["Hall"] = {};
-ModuleTable["Hall"]["jsLists"] = ["src/module/hall/logic/HallLogic.js","src/module/hall/controller/HallController.js"];
+ModuleTable["Hall"]["jsLists"] = [
+	"src/module/hall/profile/ProfileHall.js",
+	"src/module/hall/logic/HallLogic.js",
+	"src/module/hall/controller/HallController.js"];
 ModuleTable["Hall"]["Layer"] = g_LayerTag.Base_Layer;
 ModuleTable["Hall"]["resLists"] = [
 		"res/ui_BG01.png",
@@ -68,14 +74,20 @@ ModuleTable["Hall"]["resLists"] = [
 		"res/Hall.json"];
 
 ModuleTable["Loading"] = {};
-ModuleTable["Loading"]["jsLists"] = ["src/module/login/logic/LoadingLogic.js","src/module/login/controller/LoadingController.js"];
+ModuleTable["Loading"]["jsLists"] = [
+	"src/module/login/profile/ProfileLoading.js",
+	"src/module/login/logic/LoadingLogic.js",
+	"src/module/login/controller/LoadingController.js"];
 ModuleTable["Loading"]["Layer"] = g_LayerTag.Base_Layer;
 ModuleTable["Loading"]["resLists"] = [
 		"res/bg1_hall.png",
 		"res/Loading.json"];
 
 ModuleTable["Login"] = {};
-ModuleTable["Login"]["jsLists"] = ["src/module/login/logic/LoginLogic.js","src/module/login/controller/LoginController.js"];
+ModuleTable["Login"]["jsLists"] = [
+	"src/module/login/profile/ProfileLogin.js",
+	"src/module/login/logic/LoginLogic.js",
+	"src/module/login/controller/LoginController.js"];
 ModuleTable["Login"]["Layer"] = g_LayerTag.Base_Layer;
 ModuleTable["Login"]["resLists"] = [
 		"res/btn_denglu_weixinzhanghaodenglu_anniu.png",
@@ -96,14 +108,20 @@ ModuleTable["Login"]["resLists"] = [
 		"res/Login.json"];
 
 ModuleTable["More"] = {};
-ModuleTable["More"]["jsLists"] = ["src/module/login/logic/MoreLogic.js","src/module/login/controller/MoreController.js"];
+ModuleTable["More"]["jsLists"] = [
+	"src/module/login/profile/ProfileMore.js",
+	"src/module/login/logic/MoreLogic.js",
+	"src/module/login/controller/MoreController.js"];
 ModuleTable["More"]["Layer"] = g_LayerTag.Third_Layer;
 ModuleTable["More"]["resLists"] = [
 		"res/bg_ui_xiugaizhanghaoxinxi_info.png",
 		"res/More.json"];
 
 ModuleTable["ResetPassword"] = {};
-ModuleTable["ResetPassword"]["jsLists"] = ["src/module/login/logic/ResetPasswordLogic.js","src/module/login/controller/ResetPasswordController.js"];
+ModuleTable["ResetPassword"]["jsLists"] = [
+	"src/module/login/profile/ProfileResetPassword.js",
+	"src/module/login/logic/ResetPasswordLogic.js",
+	"src/module/login/controller/ResetPasswordController.js"];
 ModuleTable["ResetPassword"]["Layer"] = g_LayerTag.Second_Layer;
 ModuleTable["ResetPassword"]["resLists"] = [
 		"res/bg_tanchukuang_ui.png",
@@ -111,4 +129,15 @@ ModuleTable["ResetPassword"]["resLists"] = [
 		"res/btn_login_ui_nor.png",
 		"res/btn_login_ui_input_press.png",
 		"res/ResetPassword.json"];
+
+ModuleTable["UserAgreement"] = {};
+ModuleTable["UserAgreement"]["jsLists"] = [
+	"src/module/login/profile/ProfileUserAgreement.js",
+	"src/module/login/logic/UserAgreementLogic.js",
+	"src/module/login/controller/UserAgreementController.js"];
+ModuleTable["UserAgreement"]["Layer"] = g_LayerTag.Second_Layer;
+ModuleTable["UserAgreement"]["resLists"] = [
+		"res/bg_tongyongdi.png",
+		"res/btn_zengsongliwu.png",
+		"res/UserAgreement.json"];
 

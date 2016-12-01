@@ -5,7 +5,7 @@ var #logicName#= {
     createView:function(){
     	this.initLayer();
         
-        //this.view.setTag(getDiffTag());
+        this.view.setTag(ModuleTable["#name#"]["Layer"]);
         
         this.initView();
     },

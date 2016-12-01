@@ -44,7 +44,7 @@ var #controllerName# = BaseController.extend({
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(#logicName#.view);
 		#logicName#.view.setTouchEnabled(false);
-		Frameworks.emit(signal.common.Signal_SleepModule_Done);
+		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
 
     wakeModule:function(){
@@ -68,6 +68,6 @@ var #controllerName# = BaseController.extend({
 		#logicName#.view.removeFromParent(true);
 		this.reset();
 	
-		Frameworks.emit(signal.common.Signal_DestroyModule_Done);
+		Frameworks.emit(SignalCommon.Signal_DestroyModule_Done);
     }
 });

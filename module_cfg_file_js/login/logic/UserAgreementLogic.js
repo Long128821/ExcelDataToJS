@@ -1,58 +1,41 @@
-var DeleteUserLogic= {
+var UserAgreementLogic= {
     view:null,//视图
     
 	/******工具导出的控件名******/
 	Panel_20:null,
-	panel:null,
-	lab_text:null,
+	Panel_webview:null,
+	Panel:null,
 	btn_close:null,
-	btn_go:null,
-	img_ok:null,
 	
     createView:function(){
     	this.initLayer();
         
-        this.view.setTag(ModuleTable["DeleteUser"]["Layer"]);
+        this.view.setTag(ModuleTable["UserAgreement"]["Layer"]);
         
         this.initView();
     },
     
 	initView:function(){
 		this.Panel_20 = CocoStudio.getComponent(this.view, "Panel_20");//Panel
-		this.panel = CocoStudio.getComponent(this.view, "panel");//Panel
-		this.lab_text = CocoStudio.getComponent(this.view, "lab_text");//Label
+		this.Panel_webview = CocoStudio.getComponent(this.view, "Panel_webview");//Panel
+		this.Panel = CocoStudio.getComponent(this.view, "Panel");//Panel
 		this.btn_close = CocoStudio.getComponent(this.view, "btn_close");//Button
-		this.btn_go = CocoStudio.getComponent(this.view, "btn_go");//Button
-		this.img_ok = CocoStudio.getComponent(this.view, "img_ok");//ImageView
 	},
 
     initLayer:function(){
-		var gui = GUI_DELETEUSER; 
+		var gui = GUI_USERAGREEMENT; 
 		if(GameConfig.RealProportion > GameConfig.SCREEN_PROPORTION_SMALL){
 			//适配方案 1136x640  
-			this.view = CocoStudio.createView("res/DeleteUser.json"); 
+			this.view = CocoStudio.createView("res/UserAgreement.json"); 
 			GameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.EXACT_FIT); 
 		}else if(GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL){
 			//适配方案 Pad加黑边  
-			this.view = CocoStudio.createView("res/DeleteUser.json"); 
+			this.view = CocoStudio.createView("res/UserAgreement.json"); 
 			GameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.SHOW_ALL); 
 		}
 	},
     
 	callback_btn_close:function(pSender, event){
-		if(event == ccui.Widget.TOUCH_BEGAN){
-			//按下
-
-		}else if(event == ccui.Widget.TOUCH_ENDED){
-			//抬起
-
-		}else if(event == ccui.Widget.TOUCH_CANCELED){
-			//取消
-
-		}
-	},
-
-	callback_btn_go:function(pSender, event){
 		if(event == ccui.Widget.TOUCH_BEGAN){
 			//按下
 

@@ -128,6 +128,7 @@ public class ConvertModuleCfgToJS {
 					System.out.println("RealPrefix ================ " + RealPrefix);
 					String controllerName = RealPrefix + "Controller";//控制类名称
 					String logicName = RealPrefix + "Logic";//逻辑类名称
+					String profileName = "Profile" + RealPrefix;//数据类名称
 					StringBuffer addCallback = new StringBuffer("");// 绑定
 					StringBuffer removeCallback = new StringBuffer("");// 解绑
 					StringBuffer callbacks = new StringBuffer("");// 回调
@@ -219,6 +220,7 @@ public class ConvertModuleCfgToJS {
 					// write logic
 					template = FileUtils.readFileToString("template/LogicJS.ftl");
 					content = template;
+					content = content.replaceAll("#name#", RealPrefix);
 					content = content.replaceAll("#logicName#", logicName);
 					content = content.replaceAll("#viewName#", viewName);
 					content = content.replaceAll("#callbacks#", callbacksString);
@@ -233,8 +235,8 @@ public class ConvertModuleCfgToJS {
 					String controllerPath = "src/module/" + moduleName + "/";
 
 					String str1 = "ModuleTable[\"#name#\"] = {};";
-					String str2 = "ModuleTable[\"#name#\"][\"jsLists\"] = [\"#controllerPath#logic/"+ logicName+".js\",\"#controllerPath#controller/"+ controllerName+".js\"];";
 					String str3 = "ModuleTable[\"#name#\"][\"Layer\"] = g_LayerTag.#layer#;";
+					String str2 = "ModuleTable[\"#name#\"][\"jsLists\"] = [\n\t" + "\"#controllerPath#profile/"+ profileName +".js\",\n\t\"#controllerPath#logic/"+ logicName+".js\",\n\t\"#controllerPath#controller/"+ controllerName+".js\"];";
 					String str4 = "ModuleTable[\"#name#\"][\"resLists\"] = [\n\t\t#picPath#\"res/#name#.json\"];\n";
 
 					str1 = str1.replaceAll("#name#", RealPrefix);
