@@ -35,6 +35,7 @@ var HallController = BaseController.extend({
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"Button_Coin"), HallLogic.callback_Button_Coin, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_vip"), HallLogic.callback_btn_vip, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"Image_Portrait"), HallLogic.callback_Image_Portrait, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
+		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_hall_huodong"), HallLogic.callback_btn_hall_huodong, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_yueka"), HallLogic.callback_btn_yueka, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_show_chat"), HallLogic.callback_btn_show_chat, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_chongzhi"), HallLogic.callback_btn_chongzhi, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
@@ -66,6 +67,7 @@ var HallController = BaseController.extend({
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"Button_Coin"), HallLogic.callback_Button_Coin, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_vip"), HallLogic.callback_btn_vip, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"Image_Portrait"), HallLogic.callback_Image_Portrait, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
+		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_hall_huodong"), HallLogic.callback_btn_hall_huodong, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_yueka"), HallLogic.callback_btn_yueka, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_show_chat"), HallLogic.callback_btn_show_chat, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_chongzhi"), HallLogic.callback_btn_chongzhi, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
@@ -98,7 +100,7 @@ var HallController = BaseController.extend({
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(HallLogic.view);
 		HallLogic.view.setTouchEnabled(false);
-		Frameworks.emit(signal.common.Signal_SleepModule_Done);
+		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
 
     wakeModule:function(){
@@ -107,13 +109,13 @@ var HallController = BaseController.extend({
         this.addCallback();
     },
 
-    destroyModule:function(){
+    destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(HallLogic.view);
 		this.destroy();
 
-		if(destroyType == DESTORY_TYPE_EFFECT){
+		if(destroyType == DESTROY_TYPE_EFFECT){
 			//不销毁数据
-		}else if(destroyType == DESTORY_TYPE_CLEAN){
+		}else if(destroyType == DESTROY_TYPE_CLEAN){
 			//销毁数据
 			Frameworks.moduleCleanUp(HallLogic);
 			HallLogic.releaseData();
@@ -122,6 +124,6 @@ var HallController = BaseController.extend({
 		HallLogic.view.removeFromParent(true);
 		this.reset();
 	
-		Frameworks.emit(signal.common.Signal_DestroyModule_Done);
+		Frameworks.emit(SignalCommon.Signal_DestroyModule_Done);
     }
 });

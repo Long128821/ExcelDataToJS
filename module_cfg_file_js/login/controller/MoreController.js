@@ -46,7 +46,7 @@ var MoreController = BaseController.extend({
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(MoreLogic.view);
 		MoreLogic.view.setTouchEnabled(false);
-		Frameworks.emit(signal.common.Signal_SleepModule_Done);
+		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
 
     wakeModule:function(){
@@ -55,13 +55,13 @@ var MoreController = BaseController.extend({
         this.addCallback();
     },
 
-    destroyModule:function(){
+    destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(MoreLogic.view);
 		this.destroy();
 
-		if(destroyType == DESTORY_TYPE_EFFECT){
+		if(destroyType == DESTROY_TYPE_EFFECT){
 			//不销毁数据
-		}else if(destroyType == DESTORY_TYPE_CLEAN){
+		}else if(destroyType == DESTROY_TYPE_CLEAN){
 			//销毁数据
 			Frameworks.moduleCleanUp(MoreLogic);
 			MoreLogic.releaseData();
@@ -70,6 +70,6 @@ var MoreController = BaseController.extend({
 		MoreLogic.view.removeFromParent(true);
 		this.reset();
 	
-		Frameworks.emit(signal.common.Signal_DestroyModule_Done);
+		Frameworks.emit(SignalCommon.Signal_DestroyModule_Done);
     }
 });

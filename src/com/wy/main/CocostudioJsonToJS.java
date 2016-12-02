@@ -279,28 +279,28 @@ public class CocostudioJsonToJS {
 			if(options.has("fileNameData")){
 				JSONObject fileNameData= options.getJSONObject("fileNameData");
 				
-				if(fileNameData.getString("path")!= null){
+				if(fileNameData.getString("path") instanceof String){
 					System.out.println(fileNameData.getString("path"));
 					data.widgetPicPath= fileNameData.getString("path");
 				}
 			}else if(options.has("pressedData")){
 				JSONObject pressedData= options.getJSONObject("pressedData");
 				
-				if(pressedData.getString("path")!= null){
+				if(pressedData.get("path") instanceof String){
 					System.out.println(pressedData.getString("path"));
 					data.widgetPicPath= pressedData.getString("path");
 				}
 			}else if(options.has("normalData")){
 				JSONObject normalData= options.getJSONObject("normalData");
 				
-				if(normalData.getString("path")!= null){
+				if(normalData.getString("path") instanceof String){
 					System.out.println(normalData.getString("path"));
 					data.widgetPicPath= normalData.getString("path");
 				}
 			}else if(options.has("disabledData")){
 				JSONObject disabledData= options.getJSONObject("disabledData");
 				
-				if(disabledData.getString("path")!= null){
+				if(disabledData.getString("path") instanceof String){
 					System.out.println(disabledData.getString("path"));
 					data.widgetPicPath= disabledData.getString("path");
 				}
@@ -309,7 +309,7 @@ public class CocostudioJsonToJS {
 					JSONObject backGroundImageData= options.getJSONObject("backGroundImageData");
 					
 					System.out.println("backGroundImageData");
-					if(backGroundImageData.getString("path")!= null){
+					if(backGroundImageData.getString("path") instanceof String){
 						System.out.println(backGroundImageData.getString("path"));
 						data.widgetPicPath= backGroundImageData.getString("path");
 					}

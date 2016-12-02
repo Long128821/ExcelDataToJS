@@ -53,13 +53,13 @@ var #controllerName# = BaseController.extend({
         this.addCallback();
     },
 
-    destroyModule:function(){
+    destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(#logicName#.view);
 		this.destroy();
 
-		if(destroyType == DESTORY_TYPE_EFFECT){
+		if(destroyType == DESTROY_TYPE_EFFECT){
 			//不销毁数据
-		}else if(destroyType == DESTORY_TYPE_CLEAN){
+		}else if(destroyType == DESTROY_TYPE_CLEAN){
 			//销毁数据
 			Frameworks.moduleCleanUp(#logicName#);
 			#logicName#.releaseData();

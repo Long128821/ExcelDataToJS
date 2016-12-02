@@ -31,6 +31,7 @@ var HallLogic= {
 	Image_touxiangkuang:null,
 	Image_chengwei:null,
 	Panel_top:null,
+	btn_hall_huodong:null,
 	btn_yueka:null,
 	btn_show_chat:null,
 	Image_hongdian2:null,
@@ -113,6 +114,7 @@ var HallLogic= {
 		this.Image_touxiangkuang = CocoStudio.getComponent(this.view, "Image_touxiangkuang");//ImageView
 		this.Image_chengwei = CocoStudio.getComponent(this.view, "Image_chengwei");//ImageView
 		this.Panel_top = CocoStudio.getComponent(this.view, "Panel_top");//Panel
+		this.btn_hall_huodong = CocoStudio.getComponent(this.view, "btn_hall_huodong");//Button
 		this.btn_yueka = CocoStudio.getComponent(this.view, "btn_yueka");//Button
 		this.btn_show_chat = CocoStudio.getComponent(this.view, "btn_show_chat");//Button
 		this.Image_hongdian2 = CocoStudio.getComponent(this.view, "Image_hongdian2");//ImageView
@@ -280,6 +282,19 @@ var HallLogic= {
 	},
 
 	callback_Image_Portrait:function(pSender, event){
+		if(event == ccui.Widget.TOUCH_BEGAN){
+			//按下
+
+		}else if(event == ccui.Widget.TOUCH_ENDED){
+			//抬起
+
+		}else if(event == ccui.Widget.TOUCH_CANCELED){
+			//取消
+
+		}
+	},
+
+	callback_btn_hall_huodong:function(pSender, event){
 		if(event == ccui.Widget.TOUCH_BEGAN){
 			//按下
 
