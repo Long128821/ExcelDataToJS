@@ -16,19 +16,19 @@ var UserAgreementController = BaseController.extend({
     requestMsg:function(){
     	UserAgreementLogic.requestMsg();
     },
-    
+    //添加信号
     addSlot:function(){
     	UserAgreementLogic.addSlot();
     },
-
+    //移除信号
 	removeSlot:function(){
 		UserAgreementLogic.removeSlot();
 	},
-    
+    //添加监听
     addCallback:function(){
 		Frameworks.bindEventCallback(CocoStudio.getComponent(UserAgreementLogic.view,"btn_close"), UserAgreementLogic.callback_btn_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
     },
-    
+    //移除监听
     removeCallback:function(){
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(UserAgreementLogic.view,"btn_close"), UserAgreementLogic.callback_btn_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
     },
@@ -36,23 +36,24 @@ var UserAgreementController = BaseController.extend({
     setModuleLayer:function(moduleLayer){
     	this.moduleLayer = moduleLayer;
 	},
-
+	//层级
 	getModuleLayer:function(moduleLayer){
 		return this.moduleLayer;
 	},
-    
+    //休眠
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(UserAgreementLogic.view);
 		UserAgreementLogic.view.setTouchEnabled(false);
+		this.removeCallback();
 		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
-
+    //唤醒
     wakeModule:function(){
     	//Frameworks.setOnKeypadEventListener(UserAgreementLogic.view, UserAgreementLogic.onKeypad);
         UserAgreementLogic.view.setTouchEnabled(true);
         this.addCallback();
     },
-
+    //销毁
     destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(UserAgreementLogic.view);
 		this.destroy();

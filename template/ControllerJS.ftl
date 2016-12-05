@@ -16,19 +16,19 @@ var #controllerName# = BaseController.extend({
     requestMsg:function(){
     	#logicName#.requestMsg();
     },
-    
+    //添加信号
     addSlot:function(){
     	#logicName#.addSlot();
     },
-
+    //移除信号
 	removeSlot:function(){
 		#logicName#.removeSlot();
 	},
-    
+    //添加监听
     addCallback:function(){
 #addCallback#
     },
-    
+    //移除监听
     removeCallback:function(){
 #removeCallback#
     },
@@ -36,23 +36,24 @@ var #controllerName# = BaseController.extend({
     setModuleLayer:function(moduleLayer){
     	this.moduleLayer = moduleLayer;
 	},
-
+	//层级
 	getModuleLayer:function(moduleLayer){
 		return this.moduleLayer;
 	},
-    
+    //休眠
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(#logicName#.view);
 		#logicName#.view.setTouchEnabled(false);
+		this.removeCallback();
 		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
-
+    //唤醒
     wakeModule:function(){
     	//Frameworks.setOnKeypadEventListener(#logicName#.view, #logicName#.onKeypad);
         #logicName#.view.setTouchEnabled(true);
         this.addCallback();
     },
-
+    //销毁
     destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(#logicName#.view);
 		this.destroy();

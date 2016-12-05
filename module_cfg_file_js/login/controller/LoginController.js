@@ -16,15 +16,15 @@ var LoginController = BaseController.extend({
     requestMsg:function(){
     	LoginLogic.requestMsg();
     },
-    
+    //添加信号
     addSlot:function(){
     	LoginLogic.addSlot();
     },
-
+    //移除信号
 	removeSlot:function(){
 		LoginLogic.removeSlot();
 	},
-    
+    //添加监听
     addCallback:function(){
 		Frameworks.bindEventCallback(CocoStudio.getComponent(LoginLogic.view,"btn_weixin_login"), LoginLogic.callback_btn_weixin_login, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(LoginLogic.view,"btn_olduser_login"), LoginLogic.callback_btn_olduser_login, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
@@ -37,7 +37,7 @@ var LoginController = BaseController.extend({
 		Frameworks.bindEventCallback(CocoStudio.getComponent(LoginLogic.view,"btn_login"), LoginLogic.callback_btn_login, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(LoginLogic.view,"Button_login_close"), LoginLogic.callback_Button_login_close, BUTTON_CLICK, BUTTON_SOUND_BACK + BUTTON_ANIMATION_ZOOM_OUT);
     },
-    
+    //移除监听
     removeCallback:function(){
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(LoginLogic.view,"btn_weixin_login"), LoginLogic.callback_btn_weixin_login, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(LoginLogic.view,"btn_olduser_login"), LoginLogic.callback_btn_olduser_login, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
@@ -54,23 +54,24 @@ var LoginController = BaseController.extend({
     setModuleLayer:function(moduleLayer){
     	this.moduleLayer = moduleLayer;
 	},
-
+	//层级
 	getModuleLayer:function(moduleLayer){
 		return this.moduleLayer;
 	},
-    
+    //休眠
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(LoginLogic.view);
 		LoginLogic.view.setTouchEnabled(false);
+		this.removeCallback();
 		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
-
+    //唤醒
     wakeModule:function(){
     	//Frameworks.setOnKeypadEventListener(LoginLogic.view, LoginLogic.onKeypad);
         LoginLogic.view.setTouchEnabled(true);
         this.addCallback();
     },
-
+    //销毁
     destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(LoginLogic.view);
 		this.destroy();

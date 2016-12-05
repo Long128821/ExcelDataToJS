@@ -231,6 +231,13 @@ public class ConvertModuleCfgToJS {
 
 					writeJS(dist + "/" + moduleName + "/logic/" + logicName + ".js", content);
 					
+					// write profile
+					template = FileUtils.readFileToString("template/ProfileJS.ftl");
+					content = template;
+					content = content.replaceAll("#profileName#", profileName);
+
+					writeJS(dist + "/" + moduleName + "/profile/" + profileName + ".js", content);
+					
 					// write ModuleConfig
 					String controllerPath = "src/module/" + moduleName + "/";
 

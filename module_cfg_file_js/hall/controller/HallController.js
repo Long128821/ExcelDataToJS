@@ -16,15 +16,15 @@ var HallController = BaseController.extend({
     requestMsg:function(){
     	HallLogic.requestMsg();
     },
-    
+    //添加信号
     addSlot:function(){
     	HallLogic.addSlot();
     },
-
+    //移除信号
 	removeSlot:function(){
 		HallLogic.removeSlot();
 	},
-    
+    //添加监听
     addCallback:function(){
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_setting"), HallLogic.callback_btn_setting, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_message"), HallLogic.callback_btn_message, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
@@ -56,7 +56,7 @@ var HallController = BaseController.extend({
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"Button_qianwang_chaojichang"), HallLogic.callback_Button_qianwang_chaojichang, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
 		Frameworks.bindEventCallback(CocoStudio.getComponent(HallLogic.view,"Button_qianwang_fanhui"), HallLogic.callback_Button_qianwang_fanhui, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_OUT);
     },
-    
+    //移除监听
     removeCallback:function(){
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_setting"), HallLogic.callback_btn_setting, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
 		Frameworks.unbindEventCallback(CocoStudio.getComponent(HallLogic.view,"btn_message"), HallLogic.callback_btn_message, BUTTON_CLICK, BUTTON_SOUND_CLICK + BUTTON_ANIMATION_ZOOM_IN);
@@ -92,23 +92,24 @@ var HallController = BaseController.extend({
     setModuleLayer:function(moduleLayer){
     	this.moduleLayer = moduleLayer;
 	},
-
+	//层级
 	getModuleLayer:function(moduleLayer){
 		return this.moduleLayer;
 	},
-    
+    //休眠
     sleepModule:function(){
 		//Frameworks.releaseOnKeypadEventListener(HallLogic.view);
 		HallLogic.view.setTouchEnabled(false);
+		this.removeCallback();
 		Frameworks.emit(SignalCommon.Signal_SleepModule_Done);
     },
-
+    //唤醒
     wakeModule:function(){
     	//Frameworks.setOnKeypadEventListener(HallLogic.view, HallLogic.onKeypad);
         HallLogic.view.setTouchEnabled(true);
         this.addCallback();
     },
-
+    //销毁
     destroyModule:function(destroyType){
         //Frameworks.releaseOnKeypadEventListener(HallLogic.view);
 		this.destroy();
