@@ -5,7 +5,7 @@ ModuleTable["DeleteUser"]["jsLists"] = [
 	"src/module/login/profile/ProfileDeleteUser.js",
 	"src/module/login/logic/DeleteUserLogic.js",
 	"src/module/login/controller/DeleteUserController.js"];
-ModuleTable["DeleteUser"]["Layer"] = g_LayerTag.Third_Layer;
+ModuleTable["DeleteUser"]["Layer"] = Layer.Third_Layer;
 ModuleTable["DeleteUser"]["resLists"] = [
 		"res/bg_toumingditu1.png",
 		"res/btn_gerenziliao37.png",
@@ -18,59 +18,49 @@ ModuleTable["Hall"]["jsLists"] = [
 	"src/module/hall/profile/ProfileHall.js",
 	"src/module/hall/logic/HallLogic.js",
 	"src/module/hall/controller/HallController.js"];
-ModuleTable["Hall"]["Layer"] = g_LayerTag.Base_Layer;
+ModuleTable["Hall"]["Layer"] = Layer.Base_Layer;
 ModuleTable["Hall"]["resLists"] = [
-		"res/ui_BG01.png",
+		"res/bg_hall_beijingditu.png",
 		"res/ui_nothing.png",
-		"res/btn_setting.png",
+		"res/ui_hall_donghuacanzhao.png",
+		"res/btn_hall_shezhi.png",
 		"res/pic_hongdian.png",
-		"res/btn_hall_youxiang_press.png",
+		"res/btn_hall_youxiang.png",
 		"res/pic_hongdian.png",
-		"res/btn_rankinglist.png",
+		"res/btn_hall_paihang.png",
 		"res/pic_hongdian.png",
-		"res/btn_shop.png",
+		"res/btn_hall_shangcheng.png",
 		"res/pic_hongdian.png",
-		"res/btn_friend.png",
+		"res/btn_hall_haoyou.png",
 		"res/pic_hongdian.png",
-		"res/D:cocosdiudiu1.6EditorDefaultResGUI/image.png",
-		"res/ui_icon_yuanbao.png",
-		"res/ui_icon_jinbi.png",
-		"res/ui_yueka0.png",
-		"res/ic_vip1.png",
-		"res/desk_playerhead_1.png",
-		"res/ui_touxiangkuang.png",
+		"res/btn_hall_renwu.png",
+		"res/btn_hall_liaotiananniu.png",
+		"res/pic_hongdian.png",
+		"res/btn_hall_jinbi.png",
+		"res/btn_hall_yuanbao.png",
+		"res/ic_vip_0.png",
+		"res/ic_vip_jiaobiao_zizuan.png",
+		"res/ic_vip_jiaobiao_shuzichendi.png",
+		"res/bg_qihuanzhanghu_01.png",
+		"res/ui_hall_yonghu_touxiangkuang.png",
 		"res/ui_fujiatianxia_1.png",
+		"res/ic_tuijian_paizhuo_chenghao1.png",
+		"res/desk_playerhead_1.png",
+		"res/ui_hall_donghuacanzhao.png",
+		"res/btn_hall_jingjichangrukou.png",
 		"res/ui_chaozhiyueka.png",
-		"res/btn_hall_liaotian.png",
-		"res/pic_hongdian.png",
+		"res/ui_hall_daojishi_tian.png",
 		"res/ui_huoqujinbi.png",
 		"res/pic_hongdian.png",
 		"res/ui_libaodi.png",
 		"res/ui_huodong.png",
-		"res/btn_back.png",
 		"res/pic_gonggaolan.png",
-		"res/pic_pochan1.png",
-		"res/pic_hongdian.png",
-		"res/pic_jingdianchang.png",
-		"res/pic_qianwangchang.png",
-		"res/pic_xiaoyouxi.png",
-		"res/btn_lijiyouxi.png",
-		"res/ui_nothing.png",
-		"res/pic_chujichang.png",
-		"res/pic_zhongji500.png",
-		"res/pic_zhongjichang.png",
-		"res/pic_zhongji5000.png",
-		"res/pic_gaojichang.png",
-		"res/pic_gaoji100000.png",
-		"res/btn_guanbi.png",
-		"res/ui_nothing.png",
-		"res/pic_chujichang2.png",
-		"res/pic_gaoji100000.png",
-		"res/pic_gaojichang2.png",
-		"res/pic_qianwanggaoji200000.png",
-		"res/pic_chaojijichang2.png",
-		"res/pic_weikaiqi.png",
-		"res/btn_guanbi.png",
+		"res/ui_hall_bisaichang_anniu_diban.png",
+		"res/ui_hall_jingdianchang_diban.png",
+		"res/ui_hall_qianwangchang_diban.png",
+		"res/bg_hall_xiaoyouxi_dikuang.png",
+		"res/btn_hall_vipanniu.png",
+		"res/ui_hall_fenggexianguangxiao.png",
 		"res/Hall.json"];
 
 ModuleTable["Loading"] = {};
@@ -78,7 +68,7 @@ ModuleTable["Loading"]["jsLists"] = [
 	"src/module/login/profile/ProfileLoading.js",
 	"src/module/login/logic/LoadingLogic.js",
 	"src/module/login/controller/LoadingController.js"];
-ModuleTable["Loading"]["Layer"] = g_LayerTag.Base_Layer;
+ModuleTable["Loading"]["Layer"] = Layer.Base_Layer;
 ModuleTable["Loading"]["resLists"] = [
 		"res/bg1_hall.png",
 		"res/Loading.json"];
@@ -88,7 +78,7 @@ ModuleTable["Login"]["jsLists"] = [
 	"src/module/login/profile/ProfileLogin.js",
 	"src/module/login/logic/LoginLogic.js",
 	"src/module/login/controller/LoginController.js"];
-ModuleTable["Login"]["Layer"] = g_LayerTag.Base_Layer;
+ModuleTable["Login"]["Layer"] = Layer.Base_Layer;
 ModuleTable["Login"]["resLists"] = [
 		"res/btn_denglu_weixinzhanghaodenglu_anniu.png",
 		"res/btn_denglu_yiyouzhanghaodenglu_anniu.png",
@@ -112,7 +102,7 @@ ModuleTable["More"]["jsLists"] = [
 	"src/module/login/profile/ProfileMore.js",
 	"src/module/login/logic/MoreLogic.js",
 	"src/module/login/controller/MoreController.js"];
-ModuleTable["More"]["Layer"] = g_LayerTag.Third_Layer;
+ModuleTable["More"]["Layer"] = Layer.Third_Layer;
 ModuleTable["More"]["resLists"] = [
 		"res/bg_ui_xiugaizhanghaoxinxi_info.png",
 		"res/More.json"];
@@ -122,20 +112,50 @@ ModuleTable["ResetPassword"]["jsLists"] = [
 	"src/module/login/profile/ProfileResetPassword.js",
 	"src/module/login/logic/ResetPasswordLogic.js",
 	"src/module/login/controller/ResetPasswordController.js"];
-ModuleTable["ResetPassword"]["Layer"] = g_LayerTag.Second_Layer;
+ModuleTable["ResetPassword"]["Layer"] = Layer.Second_Layer;
 ModuleTable["ResetPassword"]["resLists"] = [
-		"res/bg_tanchukuang_ui.png",
-		"res/btn_login_ui_nor.png",
-		"res/btn_login_ui_nor.png",
-		"res/btn_login_ui_input_press.png",
+		"res/bg_tongyongdi.png",
+		"res/ui_mingchenhemimadi.png",
+		"res/btn_shouqizhankaidi.png",
+		"res/ui_zhankai.png",
+		"res/ui_zhankai.png",
+		"res/btn_zengsongliwu.png",
+		"res/btn_tichupaizhuo.png",
 		"res/ResetPassword.json"];
+
+ModuleTable["Setting"] = {};
+ModuleTable["Setting"]["jsLists"] = [
+	"src/module/hall/profile/ProfileSetting.js",
+	"src/module/hall/logic/SettingLogic.js",
+	"src/module/hall/controller/SettingController.js"];
+ModuleTable["Setting"]["Layer"] = Layer.Second_Layer;
+ModuleTable["Setting"]["resLists"] = [
+		"res/ic_setup_close.png",
+		"res/ic_setup_close.png",
+		"res/bg_tongyongdi2.png",
+		"res/btn_item_close.png",
+		"res/ui_xiugaimimadi.png",
+		"res/ui_xiugaimimadi.png",
+		"res/ui_xigaimima.png",
+		"res/btn_shezhi.png",
+		"res/ic_setup_music.png",
+		"res/btn_shezhi.png",
+		"res/ic_setup_volume.png",
+		"res/btn_shezhi.png",
+		"res/btn_shezhi.png",
+		"res/btn_tichupaizhuo.png",
+		"res/bth_qhzh.png",
+		"res/btn_zengsongliwu.png",
+		"res/bth_bbjc.png",
+		"res/ui_xiugaimima.png",
+		"res/Setting.json"];
 
 ModuleTable["UserAgreement"] = {};
 ModuleTable["UserAgreement"]["jsLists"] = [
 	"src/module/login/profile/ProfileUserAgreement.js",
 	"src/module/login/logic/UserAgreementLogic.js",
 	"src/module/login/controller/UserAgreementController.js"];
-ModuleTable["UserAgreement"]["Layer"] = g_LayerTag.Second_Layer;
+ModuleTable["UserAgreement"]["Layer"] = Layer.Second_Layer;
 ModuleTable["UserAgreement"]["resLists"] = [
 		"res/bg_tongyongdi.png",
 		"res/btn_zengsongliwu.png",

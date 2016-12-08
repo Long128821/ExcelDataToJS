@@ -242,7 +242,7 @@ public class ConvertModuleCfgToJS {
 					String controllerPath = "src/module/" + moduleName + "/";
 
 					String str1 = "ModuleTable[\"#name#\"] = {};";
-					String str3 = "ModuleTable[\"#name#\"][\"Layer\"] = g_LayerTag.#layer#;";
+					String str3 = "ModuleTable[\"#name#\"][\"Layer\"] = Layer.#layer#;";
 					String str2 = "ModuleTable[\"#name#\"][\"jsLists\"] = [\n\t" + "\"#controllerPath#profile/"+ profileName +".js\",\n\t\"#controllerPath#logic/"+ logicName+".js\",\n\t\"#controllerPath#controller/"+ controllerName+".js\"];";
 					String str4 = "ModuleTable[\"#name#\"][\"resLists\"] = [\n\t\t#picPath#\"res/#name#.json\"];\n";
 
