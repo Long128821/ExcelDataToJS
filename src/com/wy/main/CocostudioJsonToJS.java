@@ -249,10 +249,7 @@ public class CocostudioJsonToJS {
 				c2sStrPath+= "\""+ widgetPicPath+ "\",\n\t\t";
 			}
 		}
-//		if(c2sStrPath!= null){
-//			//去除后面的(,\n);
-//			c2sStrPath= c2sStrPath.substring(0, c2sStrPath.length()- 2);
-//		}
+
 
 		c2sString[0] = c2sStrDefinition;
 		c2sString[1] = c2sStrInitView;
@@ -793,3 +790,5 @@ public class CocostudioJsonToJS {
 		public String widgetPicPath = null;//控件图片
 	}
 }
+
+//Todo:添加plist

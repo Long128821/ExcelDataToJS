@@ -97,6 +97,21 @@ ModuleTable["Login"]["resLists"] = [
 		"res/btn_item_close.png",
 		"res/Login.json"];
 
+ModuleTable["MonthCard"] = {};
+ModuleTable["MonthCard"]["jsLists"] = [
+	"src/module/recharge/profile/ProfileMonthCard.js",
+	"src/module/recharge/logic/MonthCardLogic.js",
+	"src/module/recharge/controller/MonthCardController.js"];
+ModuleTable["MonthCard"]["Layer"] = Layer.Second_Layer;
+ModuleTable["MonthCard"]["resLists"] = [
+		"res/btn_weixinzhifu3.png",
+		"res/pic_caizhi.png",
+		"res/btn_item_close.png",
+		"res/btn_zengsongliwu.png",
+		"res/ui_item_btn_ensure.png",
+		"res/ui_yueka_daojishiwenzi.png",
+		"res/MonthCard.json"];
+
 ModuleTable["More"] = {};
 ModuleTable["More"]["jsLists"] = [
 	"src/module/login/profile/ProfileMore.js",
@@ -106,6 +121,60 @@ ModuleTable["More"]["Layer"] = Layer.Third_Layer;
 ModuleTable["More"]["resLists"] = [
 		"res/bg_ui_xiugaizhanghaoxinxi_info.png",
 		"res/More.json"];
+
+ModuleTable["OtherUserInfo"] = {};
+ModuleTable["OtherUserInfo"]["jsLists"] = [
+	"src/module/userinfo/profile/ProfileOtherUserInfo.js",
+	"src/module/userinfo/logic/OtherUserInfoLogic.js",
+	"src/module/userinfo/controller/OtherUserInfoController.js"];
+ModuleTable["OtherUserInfo"]["Layer"] = Layer.Second_Layer;
+ModuleTable["OtherUserInfo"]["resLists"] = [
+		"res/bg_toumingditu.png",
+		"res/ui_jindutiaodi.png",
+		"res/ui_jindutiao.png",
+		"res/desk_playerhead.png",
+		"res/ic_vip_0.png",
+		"res/ic_vip_jiaobiao_zizuan.png",
+		"res/ic_vip_jiaobiao_shuzichendi.png",
+		"res/ui_touxiangkuang.png",
+		"res/pic_renvdi.png",
+		"res/ic_tuijian_paizhuo_chenghao1.png",
+		"res/ic_gerenxinxi_nv.png",
+		"res/ic_gerenxinxi_shoujiweibangding.png",
+		"res/ic_gerenxinxi_weixinweibangding.png",
+		"res/pic_gonggaolan1.png",
+		"res/ic_jinbi.png",
+		"res/ui_fujiatianxia.png",
+		"res/ui_gerenxinxi_xingminglan.png",
+		"res/pic_gonggaolan1.png",
+		"res/ui_jushu.png",
+		"res/ui_shenglv.png",
+		"res/ui_meili_liwu_gongyongdi.png",
+		"res/ic_taoxinhuise.png",
+		"res/ic_taoxindianliang.png",
+		"res/ic_taoxinhuise.png",
+		"res/ic_taoxindianliang.png",
+		"res/ic_taoxinhuise.png",
+		"res/ic_taoxindianliang.png",
+		"res/ic_taoxinhuise.png",
+		"res/ic_taoxindianliang.png",
+		"res/ic_taoxinhuise.png",
+		"res/ic_taoxindianliang.png",
+		"res/btn_meilihao.png",
+		"res/btn_weixuanzhong_l.png",
+		"res/btn_xuanzhong_r.png",
+		"res/btn_baoxianxiang_cunkuanweixuanzhong.png",
+		"res/btn_baoxianxiang_cunkuandi.png",
+		"res/btn_baoxianxiang_qukuanweixuanzhong.png",
+		"res/btn_baoxianxiang_qukuandi.png",
+		"res/ui_mingchenhemimadi.png",
+		"res/btn_baoxianxiang_queren.png",
+		"res/btn_baoxianxiang_1000wanniu.png",
+		"res/btn_baoxianxiang_maxanniu.png",
+		"res/btn_baoxianxiang_1000wanniu.png",
+		"res/btn_item_close.png",
+		"res/btn_item_close.png",
+		"res/OtherUserInfo.json"];
 
 ModuleTable["ResetPassword"] = {};
 ModuleTable["ResetPassword"]["jsLists"] = [
