@@ -8,6 +8,8 @@ var #logicName#= {
         this.view.setTag(ModuleTable["#name#"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	#InitViewfunction#
@@ -39,5 +41,9 @@ var #logicName#= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };
