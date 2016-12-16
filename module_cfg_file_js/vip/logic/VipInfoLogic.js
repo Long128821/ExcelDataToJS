@@ -32,6 +32,8 @@ var VipInfoLogic= {
         this.view.setTag(ModuleTable["VipInfo"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -148,5 +150,9 @@ var VipInfoLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

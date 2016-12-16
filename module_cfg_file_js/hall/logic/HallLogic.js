@@ -73,6 +73,8 @@ var HallLogic= {
         this.view.setTag(ModuleTable["Hall"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -481,5 +483,9 @@ var HallLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

@@ -15,6 +15,8 @@ var DeleteUserLogic= {
         this.view.setTag(ModuleTable["DeleteUser"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -88,5 +90,9 @@ var DeleteUserLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

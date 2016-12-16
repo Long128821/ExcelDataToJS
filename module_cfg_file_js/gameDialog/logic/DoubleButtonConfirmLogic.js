@@ -1,15 +1,20 @@
-var MoreLogic= {
+var DoubleButtonConfirmLogic= {
     view:null,//视图
     
 	/******工具导出的控件名******/
-	Panel_20:null,
-	Panel_23:null,
-	scroll_sexold:null,
+	Panel_127:null,
+	Panel_2:null,
+	Image_beijing:null,
+	Label_shuoming:null,
+	Button_quxiao:null,
+	Image_quxiao:null,
+	Button_queding:null,
+	Image_queding:null,
 	
     createView:function(){
     	this.initLayer();
         
-        this.view.setTag(ModuleTable["More"]["Layer"]);
+        this.view.setTag(ModuleTable["DoubleButtonConfirm"]["Layer"]);
         
         this.initView();
         
@@ -17,25 +22,30 @@ var MoreLogic= {
     },
     
 	initView:function(){
-		this.Panel_20 = CocoStudio.getComponent(this.view, "Panel_20");//Panel
-		this.Panel_23 = CocoStudio.getComponent(this.view, "Panel_23");//Panel
-		this.scroll_sexold = CocoStudio.getComponent(this.view, "scroll_sexold");//ScrollView
+		this.Panel_127 = CocoStudio.getComponent(this.view, "Panel_127");//Panel
+		this.Panel_2 = CocoStudio.getComponent(this.view, "Panel_2");//Panel
+		this.Image_beijing = CocoStudio.getComponent(this.view, "Image_beijing");//ImageView
+		this.Label_shuoming = CocoStudio.getComponent(this.view, "Label_shuoming");//Label
+		this.Button_quxiao = CocoStudio.getComponent(this.view, "Button_quxiao");//Button
+		this.Image_quxiao = CocoStudio.getComponent(this.view, "Image_quxiao");//ImageView
+		this.Button_queding = CocoStudio.getComponent(this.view, "Button_queding");//Button
+		this.Image_queding = CocoStudio.getComponent(this.view, "Image_queding");//ImageView
 	},
 
     initLayer:function(){
-		var gui = GUI_MORE; 
+		var gui = GUI_DOUBLEBUTTONCONFIRM; 
 		if(GameConfig.RealProportion > GameConfig.SCREEN_PROPORTION_SMALL){
 			//适配方案 1136x640  
-			this.view = CocoStudio.createView("res/More.json"); 
+			this.view = CocoStudio.createView("res/DoubleButtonConfirm.json"); 
 			GameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.EXACT_FIT); 
 		}else if(GameConfig.RealProportion <= GameConfig.SCREEN_PROPORTION_SMALL){
 			//适配方案 Pad加黑边  
-			this.view = CocoStudio.createView("res/More.json"); 
+			this.view = CocoStudio.createView("res/DoubleButtonConfirm.json"); 
 			GameConfig.setCurrentScreenResolution(this.view, gui, 1136, 640, cc.ResolutionPolicy.SHOW_ALL); 
 		}
 	},
     
-	callback_Panel_20:function(pSender, event){
+	callback_Panel_127:function(pSender, event){
 		if(event == ccui.Widget.TOUCH_BEGAN){
 			//按下
 
@@ -48,7 +58,20 @@ var MoreLogic= {
 		}
 	},
 
-	callback_Panel_23:function(pSender, event){
+	callback_Button_quxiao:function(pSender, event){
+		if(event == ccui.Widget.TOUCH_BEGAN){
+			//按下
+
+		}else if(event == ccui.Widget.TOUCH_ENDED){
+			//抬起
+
+		}else if(event == ccui.Widget.TOUCH_CANCELED){
+			//取消
+
+		}
+	},
+
+	callback_Button_queding:function(pSender, event){
 		if(event == ccui.Widget.TOUCH_BEGAN){
 			//按下
 

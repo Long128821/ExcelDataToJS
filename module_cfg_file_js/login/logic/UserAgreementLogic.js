@@ -13,6 +13,8 @@ var UserAgreementLogic= {
         this.view.setTag(ModuleTable["UserAgreement"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -71,5 +73,9 @@ var UserAgreementLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

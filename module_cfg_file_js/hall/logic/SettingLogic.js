@@ -30,6 +30,8 @@ var SettingLogic= {
         this.view.setTag(ModuleTable["Setting"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -209,5 +211,9 @@ var SettingLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

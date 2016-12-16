@@ -10,6 +10,8 @@ var LoadingLogic= {
         this.view.setTag(ModuleTable["Loading"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -54,5 +56,9 @@ var LoadingLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

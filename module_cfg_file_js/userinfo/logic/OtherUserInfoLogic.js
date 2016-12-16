@@ -77,6 +77,8 @@ var OtherUserInfoLogic= {
         this.view.setTag(ModuleTable["OtherUserInfo"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -424,5 +426,9 @@ var OtherUserInfoLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

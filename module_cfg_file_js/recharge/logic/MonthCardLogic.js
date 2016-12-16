@@ -22,6 +22,8 @@ var MonthCardLogic= {
         this.view.setTag(ModuleTable["MonthCard"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -128,5 +130,9 @@ var MonthCardLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

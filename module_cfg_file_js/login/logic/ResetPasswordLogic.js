@@ -21,6 +21,8 @@ var ResetPasswordLogic= {
         this.view.setTag(ModuleTable["ResetPassword"]["Layer"]);
         
         this.initView();
+        
+        this.initData();
     },
     
 	initView:function(){
@@ -113,5 +115,9 @@ var ResetPasswordLogic= {
     
     requestMsg:function(){
     
+    },
+    //初始化界面
+    initData:function(){
+
     }
 };

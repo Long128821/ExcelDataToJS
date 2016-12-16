@@ -1,5 +1,28 @@
 var ModuleTable = {};//UI界面列表
 
+ModuleTable["ChangeInfoPop"] = {};
+ModuleTable["ChangeInfoPop"]["jsLists"] = [
+	"src/module/userinfo/profile/ProfileChangeInfoPop.js",
+	"src/module/userinfo/logic/ChangeInfoPopLogic.js",
+	"src/module/userinfo/controller/ChangeInfoPopController.js"];
+ModuleTable["ChangeInfoPop"]["Layer"] = Layer.Third_Layer;
+ModuleTable["ChangeInfoPop"]["resLists"] = [
+		"res/bg_tongyongdi.png",
+		"res/ui_mingchenhemimadi.png",
+		"res/ui_mingchenhemimadi.png",
+		"res/btn_xinxixiugai_xingbieweixuanzhong.png",
+		"res/btn_xinxixiugai_xingbieweixuanzhong.png",
+		"res/btn_xinxixiugai_xingbieweixuanzhong.png",
+		"res/btn_gerenziliao37.png",
+		"res/ui_quxiao.png",
+		"res/btn_orange.png",
+		"res/ui_queding.png",
+		"res/btn_denglu_yiyouzhanghaodenglu_anniu.png",
+		"res/btn_xinxixiugai_tankuang_jiechubangdinganniu.png",
+		"res/btn_denglu_weixinzhanghaodenglu_anniu.png",
+		"res/btn_xinxixiugai_yibandinganniu.png",
+		"res/ChangeInfoPop.json"];
+
 ModuleTable["DeleteUser"] = {};
 ModuleTable["DeleteUser"]["jsLists"] = [
 	"src/module/login/profile/ProfileDeleteUser.js",
@@ -12,6 +35,20 @@ ModuleTable["DeleteUser"]["resLists"] = [
 		"res/btn_orange.png",
 		"res/ui_quxiao.png",
 		"res/DeleteUser.json"];
+
+ModuleTable["DoubleButtonConfirm"] = {};
+ModuleTable["DoubleButtonConfirm"]["jsLists"] = [
+	"src/module/gameDialog/profile/ProfileDoubleButtonConfirm.js",
+	"src/module/gameDialog/logic/DoubleButtonConfirmLogic.js",
+	"src/module/gameDialog/controller/DoubleButtonConfirmController.js"];
+ModuleTable["DoubleButtonConfirm"]["Layer"] = Layer.Third_Layer;
+ModuleTable["DoubleButtonConfirm"]["resLists"] = [
+		"res/bg_tongyongdi.png",
+		"res/btn_tichupaizhuo.png",
+		"res/ui_queding2.png",
+		"res/btn_gongyongchangguiniu.png",
+		"res/ui_quxiao2.png",
+		"res/DoubleButtonConfirm.json"];
 
 ModuleTable["Hall"] = {};
 ModuleTable["Hall"]["jsLists"] = [
