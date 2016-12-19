@@ -23,6 +23,25 @@ ModuleTable["ChangeInfoPop"]["resLists"] = [
 		"res/btn_xinxixiugai_yibandinganniu.png",
 		"res/ChangeInfoPop.json"];
 
+ModuleTable["DailySalary"] = {};
+ModuleTable["DailySalary"]["jsLists"] = [
+	"src/module/dayilySalary/profile/ProfileDailySalary.js",
+	"src/module/dayilySalary/logic/DailySalaryLogic.js",
+	"src/module/dayilySalary/controller/DailySalaryController.js"];
+ModuleTable["DailySalary"]["Layer"] = Layer.Third_Layer;
+ModuleTable["DailySalary"]["resLists"] = [
+		"res/bg_linggongzi_dikuang.png",
+		"res/desk_playerhead_1.png",
+		"res/ui_pingming_1.png",
+		"res/btn_linggongzi_vipshengji.png",
+		"res/ic_vip_0.png",
+		"res/ic_vip_jiaobiao_zizuan.png",
+		"res/ic_vip_jiaobiao_shuzichendi.png",
+		"res/btn_zuoceanniudi.png",
+		"res/ui_gongzi_lingqu.png",
+		"res/btn_item_close.png",
+		"res/DailySalary.json"];
+
 ModuleTable["DeleteUser"] = {};
 ModuleTable["DeleteUser"]["jsLists"] = [
 	"src/module/login/profile/ProfileDeleteUser.js",
@@ -49,6 +68,18 @@ ModuleTable["DoubleButtonConfirm"]["resLists"] = [
 		"res/btn_gongyongchangguiniu.png",
 		"res/ui_quxiao2.png",
 		"res/DoubleButtonConfirm.json"];
+
+ModuleTable["GameHelp"] = {};
+ModuleTable["GameHelp"]["jsLists"] = [
+	"src/module/customservice/profile/ProfileGameHelp.js",
+	"src/module/customservice/logic/GameHelpLogic.js",
+	"src/module/customservice/controller/GameHelpController.js"];
+ModuleTable["GameHelp"]["Layer"] = Layer.Second_Layer;
+ModuleTable["GameHelp"]["resLists"] = [
+		"res/ui_xuanchangfangjiandi.png",
+		"res/ui_nothing.png",
+		"res/btn_item_close.png",
+		"res/GameHelp.json"];
 
 ModuleTable["Hall"] = {};
 ModuleTable["Hall"]["jsLists"] = [
@@ -133,6 +164,33 @@ ModuleTable["Login"]["resLists"] = [
 		"res/btn_denglu_yiyouzhanghaodenglu_anniu.png",
 		"res/btn_item_close.png",
 		"res/Login.json"];
+
+ModuleTable["MessageList"] = {};
+ModuleTable["MessageList"]["jsLists"] = [
+	"src/module/message/profile/ProfileMessageList.js",
+	"src/module/message/logic/MessageListLogic.js",
+	"src/module/message/controller/MessageListController.js"];
+ModuleTable["MessageList"]["Layer"] = Layer.Second_Layer;
+ModuleTable["MessageList"]["resLists"] = [
+		"res/btn_item_close.png",
+		"res/pic_xitongyoujian_biaoti.png",
+		"res/btn_vipshuoming_zuoyoujiantou.png",
+		"res/btn_vipshuoming_zuoyoujiantou.png",
+		"res/MessageList.json"];
+
+ModuleTable["MessageServer"] = {};
+ModuleTable["MessageServer"]["jsLists"] = [
+	"src/module/message/profile/ProfileMessageServer.js",
+	"src/module/message/logic/MessageServerLogic.js",
+	"src/module/message/controller/MessageServerController.js"];
+ModuleTable["MessageServer"]["Layer"] = Layer.Second_Layer;
+ModuleTable["MessageServer"]["resLists"] = [
+		"res/ui_nothing.png",
+		"res/btn_zengsongliwu.png",
+		"res/ui_queding.png",
+		"res/btn_zengsongliwu.png",
+		"res/ui_lingqu.png",
+		"res/MessageServer.json"];
 
 ModuleTable["MonthCard"] = {};
 ModuleTable["MonthCard"]["jsLists"] = [
