@@ -382,3 +382,21 @@ ModuleTable["VipInfo"]["resLists"] = [
 		"res/ui_nothing.png",
 		"res/VipInfo.json"];
 
+ModuleTable["XiaoMeiInfo"] = {};
+ModuleTable["XiaoMeiInfo"]["jsLists"] = [
+	"src/module/userinfo/profile/ProfileXiaoMeiInfo.js",
+	"src/module/userinfo/logic/XiaoMeiInfoLogic.js",
+	"src/module/userinfo/controller/XiaoMeiInfoController.js"];
+ModuleTable["XiaoMeiInfo"]["Layer"] = Layer.Second_Layer;
+ModuleTable["XiaoMeiInfo"]["resLists"] = [
+		"res/bg_tongyongdi.png",
+		"res/toumap.png",
+		"res/ui_touxiangkuang.png",
+		"res/ui_haoyouxitong_dengjiditu.png",
+		"res/btn_gerenziliao55.png",
+		"res/ui_haoyouxitong_faxiaoxi.png",
+		"res/ui_lv.png",
+		"res/ui_tongquxiamei.png",
+		"res/ui_lianxi.png",
+		"res/XiaoMeiInfo.json"];
+
