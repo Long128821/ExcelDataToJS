@@ -159,7 +159,7 @@ public class ConvertModuleCfgToJS {
 						String callbackName = "callback_" + componets[j];// +"_"+events[j];
 
 						// 绑定按钮监听
-						String addTemplate = "\t\tFrameworks.bindEventCallback(CocoStudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
+						String addTemplate = "\t\tFrameworks.bindEventCallback(\"#logicName##\", CocoStudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
 						addTemplate = addTemplate.replaceAll("#component#", componets[j]);
 						addTemplate = addTemplate.replaceAll("#callback#", logicName + "." + callbackName);
 						addTemplate = addTemplate.replaceAll("#event#", events[j]);
@@ -172,7 +172,7 @@ public class ConvertModuleCfgToJS {
 						}
 
 						// 解除按钮监听绑定
-						String removeTemplate = "\t\tFrameworks.unbindEventCallback(CocoStudio.getComponent(#logicName#.view,\"#component#\"), #callback#, #event#, #buttonEffectEvent#);";
+						String removeTemplate = "\t\tFrameworks.unbindEventCallback(CocoStudio.getComponent(#logicName#.view,\"#logicName###component#\"), #callback#, #event#, #buttonEffectEvent#);";
 						removeTemplate = removeTemplate.replaceAll("#component#", componets[j]);
 						removeTemplate = removeTemplate.replaceAll("#callback#", logicName + "." + callbackName);
 						removeTemplate = removeTemplate.replaceAll("#event#", events[j]);
