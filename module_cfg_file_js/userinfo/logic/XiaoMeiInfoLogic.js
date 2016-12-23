@@ -13,6 +13,7 @@ var XiaoMeiInfoLogic= {
 	Image_lv:null,
 	Image_name:null,
 	Image_dianhua:null,
+	Button_close:null,
 	
     createView:function(){
     	this.initLayer();
@@ -36,6 +37,7 @@ var XiaoMeiInfoLogic= {
 		this.Image_lv = CocoStudio.getComponent(this.view, "Image_lv");//ImageView
 		this.Image_name = CocoStudio.getComponent(this.view, "Image_name");//ImageView
 		this.Image_dianhua = CocoStudio.getComponent(this.view, "Image_dianhua");//ImageView
+		this.Button_close = CocoStudio.getComponent(this.view, "Button_close");//Button
 	},
 
     initLayer:function(){
@@ -52,6 +54,19 @@ var XiaoMeiInfoLogic= {
 	},
     
 	callback_Button_xiaoxi:function(pSender, event){
+		if(event == ccui.Widget.TOUCH_BEGAN){
+			//按下
+
+		}else if(event == ccui.Widget.TOUCH_ENDED){
+			//抬起
+
+		}else if(event == ccui.Widget.TOUCH_CANCELED){
+			//取消
+
+		}
+	},
+
+	callback_Button_close:function(pSender, event){
 		if(event == ccui.Widget.TOUCH_BEGAN){
 			//按下
 

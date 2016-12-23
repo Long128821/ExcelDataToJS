@@ -398,5 +398,6 @@ ModuleTable["XiaoMeiInfo"]["resLists"] = [
 		"res/ui_lv.png",
 		"res/ui_tongquxiamei.png",
 		"res/ui_lianxi.png",
+		"res/btn_item_close.png",
 		"res/XiaoMeiInfo.json"];
 
